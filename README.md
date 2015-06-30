@@ -29,11 +29,4 @@ angular.module('MyApp', ['nouislider']);
 <div slider ng-from="test.from" ng-to="test.to" start=0 end=100 step=5></div>
 ```
 
-- All attributes(`start`,`end`,`ng-from`, `ng-to`,`step`) except `margin` can be changed dynamically
-
-```html
-<div slider ng-model="test.single" start=1 end=10 callback='change'></div>
-<div slider ng-from="test.from" ng-to="test.to" start=0 end=100 step=5 callback='set'></div>
-```
-
-That's it!
+- All attributes(`start`,`end`,`ng-from`,`ng-to`,`ngModel`,`step`) except `margin` can be changed dynamically
