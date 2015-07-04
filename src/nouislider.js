@@ -9,7 +9,9 @@ angular.module('nouislider', []).directive('slider', function () {
             margin: '@',
             ngModel: '=',
             ngFrom: '=',
-            ngTo: '='
+            ngTo: '=',
+            change: '&',
+            slide: '&'
         },
         link: function (scope, element, attrs, ctrl) {
             var slider = $(element)[0];
@@ -69,8 +71,18 @@ angular.module('nouislider', []).directive('slider', function () {
                         max: [parseFloat($scope.end)]
                     }
                 });
-                slider.noUiSlider.on('change', this.changeHandler);
-                slider.noUiSlider.on('slide', this.changeHandler);
+                slider.noUiSlider.on('change', function( values, handle ) {
+                    controller.changeHandler(values, handle);
+                    if($scope.change) {
+                        $scope.change();
+                    }
+                });
+                slider.noUiSlider.on('slide', function( values, handle ) {
+                    controller.changeHandler(values, handle);
+                    if($scope.slide) {
+                        $scope.slide();
+                    }
+                });
             };
             this.changeHandler = function( values, handle ) {
                 var from, to;
