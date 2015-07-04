@@ -11,7 +11,8 @@ angular.module('nouislider', []).directive('slider', function () {
             ngFrom: '=',
             ngTo: '=',
             change: '&',
-            slide: '&'
+            slide: '&',
+            set: '&'
         },
         link: function (scope, element, attrs, ctrl) {
             var slider = $(element)[0];
@@ -81,6 +82,11 @@ angular.module('nouislider', []).directive('slider', function () {
                     controller.changeHandler(values, handle);
                     if($scope.slide) {
                         $scope.slide();
+                    }
+                });
+                slider.noUiSlider.on('set', function( values, handle ) {
+                    if($scope.set) {
+                        $scope.set();
                     }
                 });
             };
